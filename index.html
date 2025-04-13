@@ -3,30 +3,19 @@
   <head>
     <meta charset="UTF-8" />
     <title>ADHD Skills Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
   </head>
   <body>
-    <h1>Users</h1>
-    <ul id="user-list"></ul>
+    <div class="form">
+      <h1>Login</h1>
+      <form id="login-form">
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+    </div>
 
-    <script>
-      const backendUrl = "https://adhd-skills-tracker.onrender.com";
-
-      fetch(`${backendUrl}/users`)
-        .then((response) => {
-          if (!response.ok) throw new Error("Network response was not ok");
-          return response.json();
-        })
-        .then((data) => {
-          const list = document.getElementById("user-list");
-          data.forEach((user) => {
-            const li = document.createElement("li");
-            li.textContent = `Username: ${user.username}, Email: ${user.email}`;
-            list.appendChild(li);
-          });
-        })
-        .catch((error) => {
-          console.error("Error fetching users:", error);
-        });
-    </script>
+    <div class="message" id="message"></div>
   </body>
 </html>

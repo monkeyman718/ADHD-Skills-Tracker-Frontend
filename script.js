@@ -1,18 +1,30 @@
 const backendUrl = "https://adhd-skills-tracker.onrender.com";
 
-fetch(`${backendUrl}/users`)
-  .then((response) => {
-    if (!response.ok) throw new Error("Network response was not ok");
-    return response.json();
-  })
-  .then((data) => {
-    const list = document.getElementById("user-list");
-    data.forEach((user) => {
-      const li = document.createElement("li");
-      li.textContent = `User ID: ${user.ID}, Email: ${user.email}`;
-      list.appendChild(li);
-    });
-  })
-  .catch((error) => {
-    console.error("Error fetching users:", error);
+document
+  .getElementById("login-form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault(); // prevent the form from refreshing the page
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    fetch(`${backendUrl}/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Invalid credentials");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        document.getElementById("message").textContent = data.message;
+      })
+      .catch((error) => {
+        document.getElementById("message").textContent = error.message;
+      });
   });

@@ -9,7 +9,7 @@ fetch(`${backendUrl}/users`)
     const list = document.getElementById("user-list");
     data.forEach((user) => {
       const li = document.createElement("li");
-      li.textContent = `User ID: ${user.id}, Name: ${user.name}`;
+      li.textContent = `User ID: ${user.id}, Name: ${user.email}`;
       list.appendChild(li);
     });
   })

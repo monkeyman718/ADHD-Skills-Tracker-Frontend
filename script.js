@@ -23,7 +23,7 @@ document
       })
       .then((data) => {
         document.getElementById("message").textContent = data.message;
-        console.log(data.message);
+        console.log(data);
       })
       .catch((error) => {
         document.getElementById("message").textContent = error.message;

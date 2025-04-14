@@ -44,6 +44,15 @@ button {
   width: 100%;
 }
 
+.msg-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 5px;
+  margin: auto;
+}
+
 .message {
   text-align: center;
   color: black;
